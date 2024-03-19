@@ -25,7 +25,7 @@ def test_internet_speed():
     return download_speed, upload_speed, ping_result, ip_address, isp, city
 
 
-# Попробуйте вызвать функцию и вывести результаты
+# Вызываем функцию и выводим результаты
 try:
     download, upload, ping, ip, provider, city = test_internet_speed()
     print(f"Скорость загрузки: {download:.2f} Мбит/с")
