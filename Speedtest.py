@@ -16,10 +16,23 @@ def test_internet_speed():
     # Измеряем пинг
     ping_result = st.results.ping
 
-    return download_speed, upload_speed, ping_result
+    # Получаем IP-адрес, провайдера и город
+    client_info = st.results.client
+    ip_address = client_info.get('ip', 'Недоступно')
+    isp = client_info.get('isp', 'Недоступно')
+    city = client_info.get('city', 'Недоступно')
+
+    return download_speed, upload_speed, ping_result, ip_address, isp, city
 
 
-download, upload, ping = test_internet_speed()
-print(f"Скорость загрузки: {download:.2f} Мбит/с")
-print(f"Скорость отдачи: {upload:.2f} Мбит/с")
-print(f"Пинг: {ping:.2f} мс")
+# Попробуйте вызвать функцию и вывести результаты
+try:
+    download, upload, ping, ip, provider, city = test_internet_speed()
+    print(f"Скорость загрузки: {download:.2f} Мбит/с")
+    print(f"Скорость отдачи: {upload:.2f} Мбит/с")
+    print(f"Пинг: {ping:.2f} мс")
+    print(f"IP-адрес: {ip}")
+    print(f"Провайдер: {provider}")
+    print(f"Город: {city}")
+except Exception as e:
+    print(f"Произошла ошибка при измерении скорости интернета: {e}")
